@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/presentation/chat/widgets/her_message_bubble.dart';
 import 'package:yes_no_app/presentation/chat/widgets/my_message_bubble.dart';
 
 const String _urlImage =
@@ -43,7 +44,9 @@ class _ChatView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 100,
                 itemBuilder: (context, index) {
-                  return const MyMessageBubble();
+                  return (index % 2 == 0)
+                      ? const HerMessageBubble()
+                      : const MyMessageBubble();
                 },
               ),
             ),
