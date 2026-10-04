@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 
 class MessageFieldBox extends StatelessWidget {
-  const MessageFieldBox({super.key});
+  MessageFieldBox({super.key});
+
+  final textController = TextEditingController();
+  final focusNode = FocusNode();
 
   void _onPressed() {
-    print('Valor de la caja de textooo :)');
+    final textValue = textController.value.text;
+    print('Valor de la caja de textooo :) $textValue');
+    textController.clear();
   }
 
   void _onValueChaged(String value) {
+    //? Solo es una demostracion
     print('Valor: $value');
   }
 
   void _onSubmittedValue(String value) {
     print('Submitted value: $value');
+    textController.clear();
+    focusNode.requestFocus();
   }
 
   @override
@@ -23,6 +31,7 @@ class MessageFieldBox extends StatelessWidget {
     );
 
     final inputDecoration = InputDecoration(
+      hintText: 'Envia tu mensaje con "?" al final',
       filled: true,
       enabledBorder: outlineInputBorder,
       focusedBorder: outlineInputBorder,
@@ -33,6 +42,8 @@ class MessageFieldBox extends StatelessWidget {
     );
 
     return TextFormField(
+      focusNode: focusNode,
+      controller: textController,
       decoration: inputDecoration,
       onFieldSubmitted: _onSubmittedValue,
       onChanged: _onValueChaged,
