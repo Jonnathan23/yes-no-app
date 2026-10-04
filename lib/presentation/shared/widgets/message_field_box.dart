@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MessageFieldBox extends StatelessWidget {
-  MessageFieldBox({super.key});
+class MessageFieldBox extends StatefulWidget {
+  const MessageFieldBox({super.key});
 
+  @override
+  State<MessageFieldBox> createState() => _MessageFieldBoxState();
+}
+
+class _MessageFieldBoxState extends State<MessageFieldBox> {
   final textController = TextEditingController();
   final focusNode = FocusNode();
 
@@ -21,6 +26,16 @@ class MessageFieldBox extends StatelessWidget {
     print('Submitted value: $value');
     textController.clear();
     focusNode.requestFocus();
+  }
+
+  @override
+  void dispose() {
+    // Destruimos nuestros controladores para liberar memoria
+    textController.dispose();
+    focusNode.dispose();
+    
+    // Siempre debemos llamar al super.dispose() al final
+    super.dispose(); 
   }
 
   @override

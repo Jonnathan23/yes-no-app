@@ -39,21 +39,23 @@ class _ChatView extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return (index % 2 == 0)
-                      ? const HerMessageBubble()
-                      : const MyMessageBubble();
-                },
-              ),
-            ),
-            MessageFieldBox(),
-          ],
-        ),
+        child: Column(children: [_ChatList(), const MessageFieldBox()]),
+      ),
+    );
+  }
+}
+
+class _ChatList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return (index % 2 == 0)
+              ? const HerMessageBubble()
+              : const MyMessageBubble();
+        },
       ),
     );
   }

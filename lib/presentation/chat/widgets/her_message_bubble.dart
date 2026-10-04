@@ -10,23 +10,30 @@ class HerMessageBubble extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            color: colors.secondary,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text('Hola mundo', style: TextStyle(color: Colors.white)),
-          ),
-        ),
-
+        _MessageBubble(colors: colors),
         const SizedBox(height: 5),
-
         _ImageBubble(),
-
         const SizedBox(height: 10),
       ],
+    );
+  }
+}
+
+class _MessageBubble extends StatelessWidget {
+  final ColorScheme colors;
+  const _MessageBubble({required this.colors});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: colors.secondary,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Text('Hola mundo', style: TextStyle(color: Colors.white)),
+      ),
     );
   }
 }
