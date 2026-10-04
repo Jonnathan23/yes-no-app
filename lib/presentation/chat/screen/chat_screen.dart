@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yes_no_app/presentation/chat/widgets/her_message_bubble.dart';
 import 'package:yes_no_app/presentation/chat/widgets/my_message_bubble.dart';
+import 'package:yes_no_app/presentation/shared/widgets/message_field_box.dart';
 
 const String _urlImage =
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOyhKFUFYAr2Icl1rPheegnTfwzT1lEqLrd1ygVf_xXA&s';
@@ -42,7 +43,7 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: 100,
+                itemCount: 10,
                 itemBuilder: (context, index) {
                   return (index % 2 == 0)
                       ? const HerMessageBubble()
@@ -50,7 +51,7 @@ class _ChatView extends StatelessWidget {
                 },
               ),
             ),
-            Text('Mundo'),
+            const MessageFieldBox(),
           ],
         ),
       ),
