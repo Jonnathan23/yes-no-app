@@ -11,31 +11,14 @@ class _MessageFieldBoxState extends State<MessageFieldBox> {
   final textController = TextEditingController();
   final focusNode = FocusNode();
 
-  void _onPressed() {
-    final textValue = textController.value.text;
-    print('Valor de la caja de textooo :) $textValue');
-    textController.clear();
-  }
-
-  void _onValueChaged(String value) {
-    //? Solo es una demostracion
-    print('Valor: $value');
-  }
-
-  void _onSubmittedValue(String value) {
-    print('Submitted value: $value');
-    textController.clear();
-    focusNode.requestFocus();
-  }
-
   @override
   void dispose() {
     // Destruimos nuestros controladores para liberar memoria
     textController.dispose();
     focusNode.dispose();
-    
+
     // Siempre debemos llamar al super.dispose() al final
-    super.dispose(); 
+    super.dispose();
   }
 
   @override
@@ -57,11 +40,33 @@ class _MessageFieldBoxState extends State<MessageFieldBox> {
     );
 
     return TextFormField(
+      onTapOutside: _onTapOutside,
       focusNode: focusNode,
       controller: textController,
       decoration: inputDecoration,
       onFieldSubmitted: _onSubmittedValue,
       onChanged: _onValueChaged,
     );
+  }
+
+  void _onTapOutside(PointerDownEvent event) {
+    focusNode.unfocus();
+  }
+
+  void _onPressed() {
+    final textValue = textController.value.text;
+    print('Valor de la caja de textooo :) $textValue');
+    textController.clear();
+  }
+
+  void _onValueChaged(String value) {
+    //? Solo es una demostracion
+    print('Valor: $value');
+  }
+
+  void _onSubmittedValue(String value) {
+    print('Submitted value: $value');
+    textController.clear();
+    focusNode.requestFocus();
   }
 }
